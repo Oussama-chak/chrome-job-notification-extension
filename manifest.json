@@ -1,30 +1,38 @@
 {
   "manifest_version": 3,
-  "name": "Job Notification Extension",
-  "version": "1.0",
-  "description": "Receive notifications about the latest job offers that match your profile.",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "notifications",
-    "webNavigation"
-  ],
-  "background": {
-    "service_worker": "src/background/background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["*://www.indeed.com/*"],  
-      "js": ["src/content/content.js"]
-    }
-  ],
-  "action": {
-    "default_popup": "src/popup/popup.html",
-    "default_icon": "assets/icon.png"
-  },
+  "name": "WTTJ Job Alert",
+  "version": "1.0.0",
+  "description": "Get notifications for new jobs on Welcome to the Jungle matching your criteria",
   "icons": {
     "16": "assets/icon.png",
     "48": "assets/icon.png",
     "128": "assets/icon.png"
-  }
+  },
+  "permissions": [
+    "notifications",
+    "alarms",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.welcometothejungle.com/jobs/en*"
+  ],
+  "background": {
+    "service_worker": "src/background/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon.png",
+      "48": "assets/icon.png",
+      "128": "assets/icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.welcometothejungle.com/*"],
+      "js": ["src/content/content.js"],
+      "css": ["src/styles/style.css"]
+    }
+  ]
 }

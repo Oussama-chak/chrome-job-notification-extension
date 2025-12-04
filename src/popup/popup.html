@@ -3,14 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Notifications</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>Job Alert Notifier</title>
+  <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
-  <h1>Job Notifications</h1>
-  <button id="refreshJobs">Refresh Jobs</button>
-  <div id="jobListings"></div>
-  
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1>🔔 Job Alert Notifier</h1>
+      <p class="subtitle">Stay updated on new opportunities</p>
+    </header>
+
+    <main class="popup-main">
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="stat-card">
+          <span class="stat-value" id="totalJobs">0</span>
+          <span class="stat-label">Jobs Found</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="lastCheck">Never</span>
+          <span class="stat-label">Last Check</span>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="actions-section">
+        <button id="checkNowBtn" class="btn btn-primary">
+          🔍 Check Now
+        </button>
+        <button id="testNotifBtn" class="btn btn-warning">
+          🔔 Test Notification
+        </button>
+        <button id="viewJobsBtn" class="btn btn-secondary">
+          💼 View Saved Jobs
+        </button>
+      </section>
+
+      <!-- Settings Section -->
+      <section class="settings-section">
+        <h2>Settings</h2>
+        
+        <div class="setting-group">
+          <label for="keywords">Keywords (comma separated):</label>
+          <input 
+            type="text" 
+            id="keywords" 
+            placeholder="developer, engineer, frontend"
+          >
+        </div>
+
+        <div class="setting-group">
+          <label for="checkInterval">Check interval (minutes):</label>
+          <input 
+            type="number" 
+            id="checkInterval" 
+            min="15" 
+            max="1440" 
+            value="30"
+          >
+        </div>
+
+        <div class="setting-group">
+          <label>Enabled Job Boards:</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" name="site" value="welcometothejungle" checked>
+              Welcome to the Jungle
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="site" value="linkedin" checked>
+              LinkedIn
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" name="site" value="indeed" checked>
+              Indeed
+            </label>
+          </div>
+        </div>
+
+        <button id="saveSettingsBtn" class="btn btn-success">
+          Save Settings
+        </button>
+      </section>
+
+      <!-- Saved Jobs List -->
+      <section class="jobs-section" id="jobsSection" style="display: none;">
+        <h2>Saved Jobs</h2>
+        <div id="jobsList" class="jobs-list">
+          <!-- Jobs will be dynamically inserted here -->
+        </div>
+      </section>
+
+      <div id="statusMessage" class="status-message"></div>
+    </main>
+
+    <footer class="popup-footer">
+      <p>Made with ❤️ for job seekers</p>
+    </footer>
+  </div>
+
   <script src="popup.js"></script>
 </body>
 </html>
